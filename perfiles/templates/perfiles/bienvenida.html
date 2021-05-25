@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% block title %}Bienvenida{% endblock %}
+{% block navlinks %}
+    {% if user.is_authenticated %}
+        <li><a href="{% url 'bienvenida' %}" class="">{{ user.username }}<i class="material-icons left">account_circle</i></a></li>
+        <li><a href="{% url 'sign_out' %}" class="waves-effect waves-light btn-small red accent-3">Cerrar Sesión</a></li>
+    {% else %}
+        <li><a href="{% url 'sign_up' %}" class="waves-effect waves-light btn-small green accent-4">Registro</a></li>
+        <li><a href="{% url 'sign_in' %}" class="waves-effect waves-light btn-small blue darken-2">Inicio Sesión</a></li>
+    {% endif %}
+{% endblock navlinks %}
+{% block navlinks_2 %}
+    {% if user.is_authenticated %}
+        <li><a href="{% url 'bienvenida' %}" class="">{{ user.username }}<i class="material-icons left">account_circle</i></a></li>
+        <li><a href="{% url 'sign_out' %}" class="waves-effect waves-light btn-small red accent-3">Cerrar Sesión</a></li>
+    {% else %}
+        <li><a href="{% url 'sign_up' %}" class="waves-effect waves-light btn-small green accent-4">Registro</a></li>
+        <li><a href="{% url 'sign_in' %}" class="waves-effect waves-light btn-small blue darken-2">Inicio Sesión</a> </li>
+    {% endif %}
+{% endblock navlinks_2 %}
+{% block content %}
+<!-- **********************************************-->
+<!-- ****** VISTA DE USUARIO ADMINISTRADOR ********-->
+<!-- **********************************************-->
+    {% if user.is_authenticated and user.usuario_administrador %}
+    <header class="container">
+        <div class="titulo-contenido-parent">
+            <h4 class="titulo-contenido"> <i class="material-icons left green-text text-accent-4">verified_user</i> Mi Perfil</h4>
+        </div>
+    </header>
+    <main class="container">
+        <div class="card row">
+            <div class="col l5 m4 s12 info-perfil">
+                <div class="col s12">
+                    {% if user.foto %}
+                    <div class="img-perfil" style="background-image: url('{{ user.foto.url }}')"></div>
+                    {% else %}
+                    <div class="img-perfil" style="background-image: url('../../static/img/img-registro.jpg')"></div>
+                    {% endif %}
+                </div>
+                <div class="col s12">
+                    {% if user.apellidos %}
+                    <p>{{ user.nombre }} {{ user.apellidos }}</p>
+                    {% endif %}
+                </div>
+                <div class="col s12">
+                    {% if user.email %}
+                    <p><a href="mailto:{{ user.email }}">{{ user.email }}</a> </p>
+                    {% endif %}
+                </div>
+                <div class="col s12">
+                    {% if user.telf_usuario %}
+                    <p>{{ user.telf_usuario }}</p>
+                    {% endif %}
+                </div>
+                <div class="col s12">
+                    {% if user.fecha_nacimiento %}
+                    <p>{{ user.fecha_nacimiento }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col l7 m8 s12">
+                <div class="col s12 btn-listado-ofertas">
+                    <a href="{% url 'listado_ofertas' %}" class="waves-effect waves-light btn-large btn-nueva-oferta blue darken-2 btn-adm-oferta">Administrar Ofertas</a>
+                </div>
+            </div>
+        </div>
+    </main>
+<!-- *********************************************-->
+<!-- ****** VISTA DE USUARIO IDENTIFICADO ********-->
+<!-- *********************************************-->
+    {% elif user.is_authenticated %}
+    <header class="container">
+        <div class="titulo-contenido-parent">
+            <h4 class="titulo-contenido"><i class="material-icons left">account_circle</i> Mi Perfil</h4>
+        </div>
+    </header>
+    <main class="container">
+        <div class="card row">
+            <div class="col l5 m4 s12 info-perfil">
+                <div class="col s12">
+                    {% if user.foto %}
+                    <div class="img-perfil" style="background-image: url('{{ user.foto.url }}')"></div>
+                    {% else %}
+                    <div class="img-perfil" style="background-image: url('../../static/img/img-registro.jpg')"></div>
+                    {% endif %}
+                </div>
+                <div class="col l12 s12">
+                    <p>{{ user.nombre }} {{ user.apellidos }}</p>
+                </div>
+                <div class="col l12 s12">
+                    <p><a href="mailto:{{ user.email }}">{{ user.email }}</a> </p>
+                </div>
+                <div class="col l12 s12">
+                    <p>{{ user.telf_usuario }}</p>
+                </div>
+                <div class="col l12 s12">
+                    <p>{{ user.fecha_nacimiento }}</p>
+                </div>
+                <div class="col l12 s12">
+                    {% if user.cvc %}
+                    <p><a href="{{ user.cvc.url }}">Currículum Vitae</a></p>
+                    {% else %}
+                    <p>Currículum no Adjuntado</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col l7 m8 s12 flex-column-center">
+                <div class="card col s12 mis-candidaturas-parent">
+                    <a href="{% url 'mis_candidaturas' %}" class="btn btn-large">Mis Candidaturas</a>
+                </div>
+                <div class="card col s12 ver-ofertas-parent">
+                    <a href="{% url 'listado_ofertas' %}" class="btn btn-large">Ver Ofertas</a>
+                </div>
+            </div>
+        </div>
+    </main>
+<!-- ************************************************-->
+<!-- ****** VISTA DE USUARIO NO IDENTIFICADO ********-->
+<!-- ************************************************-->
+    {% else %}
+    <header class="container">
+        <div class="site-header container row valign-wrapper center-align">
+            <div class="icono-header">
+                <lord-icon src="https://cdn.lordicon.com/gqzfzudq.json" trigger="loop" delay="500" colors="primary:#121331,secondary:#3080e8" scale="65" style="width:100px;height:100px"></lord-icon>
+            </div>
+            <h1 class="valign-wrapper center-align">¡Bienvenido al Portal de Empleo!</h1>
+        </div>
+    </header>
+    <main class="container">
+        <div class="card row card-registro-inicio center-align valign-wrapper">
+            <div class="col s12 m12 l6 xl6 valign-wrapper justify-center">
+                <a class="card btn-registrar-usuario hoverable center-align valign-wrapper" href="{% url 'sign_up' %}">
+                   <h4 class="btn-registrar-usuario-in">Registrate</h4>
+                </a>
+            </div>
+            <div class="col s12 m12 l6 xl6 valign-wrapper justify-center">
+                <a href="{% url 'sign_in' %}" class="card btn-inicio-usuario hoverable center-align valign-wrapper">
+                   <h4>Inicia Sesión</h4>
+                </a>
+            </div>
+        </div>
+    </main>
+    {% endif %}
+{% endblock content %}

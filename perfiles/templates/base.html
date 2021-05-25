@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Diseño Responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#a21422">
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- JS Materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Iconos Google -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- CSS propio -->
+    <link href="{% static 'css/main.css' %}" rel="stylesheet"/>
+    <!-- Animated Icons -->
+    <script src="https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js"></script>
+    <!-- JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <!-- Iconos Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper grey darken-4">
+            <a href="{% url 'bienvenida' %}" class="brand-logo hoverable">Portal de Empleo</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger hoverable"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                {% block navlinks %}
+                {% endblock %}
+            </ul>
+        </div>
+    </nav>
+    <ul class="sidenav" id="mobile-demo">
+        {% block navlinks_2 %}
+        {% endblock %}
+    </ul>
+    {% block content %}
+    {% endblock content %}
+    <footer class="page-footer grey darken-2">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+
+                </div>
+                <div class="col l4 offset-l2 s12">
+
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright grey darken-4">
+            <div class="container valign-wrapper">
+                <span class="margin-right-2rem">© Proyecto Final DAW</span>
+                <a class="grey-text text-lighten-4 right hoverable link-github" href="https://github.com/rubhermar96/ProyectoFinal.git" target="_blank"><i class="bi bi-github"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Crear/Editar Ofertas{% endblock %}
+{% block navlinks %}
+    {% if user.is_authenticated %}
+        <li><a href="{% url 'bienvenida' %}" class="">{{ user.username }}<i class="material-icons left">account_circle</i></a></li>
+        <li><a href="{% url 'sign_out' %}" class="waves-effect waves-light btn-small red accent-3">Cerrar Sesión</a></li>
+    {% else %}
+        <li><a href="{% url 'sign_up' %}" class="waves-effect waves-light btn-small green accent-4">Registro</a></li>
+        <li><a href="{% url 'sign_in' %}" class="waves-effect waves-light btn-small blue darken-2">Inicio Sesión</a></li>
+    {% endif %}
+{% endblock navlinks %}
+{% block navlinks_2 %}
+    {% if user.is_authenticated %}
+        <li><a href="{% url 'bienvenida' %}" class="">{{ user.username }}<i class="material-icons left">account_circle</i></a></li>
+        <li><a href="{% url 'sign_out' %}" class="waves-effect waves-light btn-small red accent-3">Cerrar Sesión</a></li>
+    {% else %}
+        <li><a href="{% url 'sign_up' %}" class="waves-effect waves-light btn-small green accent-4">Registro</a></li>
+        <li><a href="{% url 'sign_in' %}" class="waves-effect waves-light btn-small blue darken-2">Inicio Sesión</a> </li>
+    {% endif %}
+{% endblock navlinks_2 %}
+{% block content %}
+    <header class="container">
+        <div class="titulo-contenido-parent row">
+            <h4 class="titulo-contenido col m8 s12"><i class="material-icons left">list_alt</i> Detalles de la Candidatura</h4>
+            <div class="col m4 s12 right-align">
+                <a href="{% url 'eliminar_candidatura' pk=candidatura.pk %}" class="waves-effect waves-light btn btn-modal btn-nueva-oferta red accent-3 ">Eliminar</a>
+            </div>
+        </div>
+    </header>
+    <main class="container">
+        <div class="card row">
+            <div class="col s12">
+                <h4>{{ candidatura.nombre_candidatura }}</h4>
+            </div>
+            <div class="row col s12">
+                <div class="col m4 s12 oferta-h6 separador-datos">
+                    <h6>Oferta:</h6>
+                    <p>{{ candidatura.oferta.titulo }}</p>
+                    <h6>Fecha Publicación:</h6>
+                    <p>{{ candidatura.oferta.published_date }}</p>
+                    <h6>Experiencia Requerida:</h6>
+                    <p>{{ candidatura.oferta.experiencia }}</p>
+                    <h6>Tipo de Contrato:</h6>
+                    <p>{{ candidatura.oferta.tipo_contrato }}</p>
+                    <h6>Salario Anual:</h6>
+                    <p>{{ candidatura.oferta.salario }}</p>
+                </div>
+                <div class="col m8 s12 oferta-h6">
+                    <h6>Descripción de la Oferta:</h6>
+                    <p class="text-align-justify">{{ candidatura.oferta.descripcion|linebreaksbr }}</p>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

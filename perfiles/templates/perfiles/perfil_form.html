@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Registrate{% endblock %}
+{% block navlinks %}
+    <li><a href="{% url 'sign_out' %}" class="waves-effect waves-light btn-small red accent-3">Salir</a></li>
+{% endblock navlinks %}
+{% block navlinks_2 %}
+    <li><a href="{% url 'sign_out' %}" class="waves-effect waves-light btn-small red accent-3">Salir</a></li>
+{% endblock navlinks_2 %}
+
+{% block content %}
+<main class="container max-width-content">
+    <div class="card row">
+        <h4 class="center-align titulo-registro">Formulario de Registro</h4>
+        <form action="" method="POST" enctype="multipart/form-data" class="col s12 center-align">
+            {% csrf_token %}
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    {{ form.username }}
+                    <label>Nombre de Usuario</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">contact_page</i>
+                    {{ form.nombre }}
+                    <label>Nombre</label>
+                </div>
+                <div class="input-field col s6">
+                    {{ form.apellidos }}
+                    <label>Apellidos</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">email</i>
+                    {{ form.email }}
+                    <label>Correo Electrónico</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">lock</i>
+                    {{ form.password1 }}
+                    <label>Contraseña</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">verified_user</i>
+                    {{ form.password2 }}
+                    <label>Confirmar Contraseña</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">phone</i>
+                    {{ form.telf_usuario }}
+                    <label>Teléfono</label>
+                </div>
+                <div class="input-field col s6">
+                    {{ form.fecha_nacimiento }}
+                    <label>Fecha de Nacimiento</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="file-field input-field col s12">
+                    <div class="btn blue-grey">
+                        <i class="material-icons">add_a_photo</i>
+                        {{ form.foto }}
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input type="text" class="file-path validate" placeholder="Elige tu foto de perfil...">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="file-field input-field col s12">
+                    <div class="btn blue-grey">
+                        <i class="material-icons">attach_file</i>
+                        {{ form.cvc }}
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input type="text" class="file-path validate" placeholder="Elige tu foto de perfil...">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <input type="submit" name="submit" class="btn btn-success green accent-4" value="REGISTRARSE">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <p>¿Ya estás registrado? <a href="{% url 'sign_in' %}" class="">Iniciar Sesión</a></p>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+{% endblock content %}

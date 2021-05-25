@@ -1,0 +1,287 @@
+html{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.text-align-justify{
+    text-align: justify;
+}
+.flex-column-center{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+.margin-left-revert{
+    margin-left: revert!important;
+}
+.justify-center{
+    justify-content: center;
+}
+.max-width-content{
+    max-width: 770px;
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+/*Header
+---------------------------------
+ */
+.site-header{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.625rem;
+}
+.icono-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3.50rem;
+}
+.btn, .btn-large, .btn-small, .btn-flat{
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+}
+/*NAV
+--------------------------------
+ */
+.brand-logo{
+    margin-left: 0.625rem;
+}
+@media screen and (max-width: 480px){
+    .brand-logo{
+        margin-left: 0rem;
+        font-size:1.5rem!important;
+    }
+}
+/*
+Footer
+ */
+.link-github{
+    margin-left: 0.5rem;
+    font-size: 2rem;
+}
+/*Inicio Portal
+-------------------------------------
+ */
+main{
+    margin-bottom: 7rem!important;
+    min-height:500px;
+}
+.descripcion-portal{
+    width: 80%;
+    margin: auto!important;
+}
+.card-registro-inicio{
+    padding: 2rem;
+    display: flex;
+    flex-flow: row wrap;
+}
+@media screen and (max-width: 810px){
+    .card-registro-inicio{
+        flex-flow: column;
+    }
+}
+.btn-registrar-usuario{
+    background: url("../img/img-registro.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+    width: 90%;
+    transition: all 200ms linear;
+}
+.btn-inicio-usuario{
+    background: url("../img/img-inico-sesion.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+    width: 90%;
+    transition: all 200ms linear;
+}
+.btn-registrar-usuario:hover{
+    filter: brightness(1.1);
+}
+.btn-inicio-usuario:hover{
+    filter: brightness(1.1);
+}
+.btn-registrar-usuario h4{
+    width:100%;
+    font-size: 2.5rem;
+    color: #fff;
+    padding: 2rem;
+    background: rgba(56, 117, 215, 0.9);
+    filter: unset;
+}
+.btn-inicio-usuario h4{
+    width: 100%;
+    font-size: 2.5rem;
+    color: #fff;
+    padding: 2rem;
+    background: rgba(56, 117, 215, 0.9);
+    filter: unset;
+}
+/*
+Formulario Registro
+ */
+.btn-success{
+    margin-bottom: 2rem;
+}
+.titulo-registro{
+    font-size: 2.5rem;
+    font-weight: 600;
+    padding: 1rem;
+    background: ghostwhite;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    margin-top: 6rem;
+}
+/*
+INICIO PERFIL
+ */
+.btn-adm-oferta{
+    margin-bottom: 10px;
+}
+.titulo-contenido .material-icons{
+    font-size:42px;
+}
+.img-perfil{
+    width:150px;
+    height: 150px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+}
+.img-perfil img{
+    border-radius: 50%;
+}
+.info-perfil{
+    padding: 1rem 0.625rem 1rem!important;
+}
+.info-perfil p{
+    padding-left: 1.25rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+.mis-candidaturas-parent{
+    background: url("../img/img-inico-sesion.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 290px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+}
+.mis-candidaturas-parent a{
+    font-size: 1.3rem;
+    color: #fff;
+    background: rgb(56, 117, 215);
+    width: 100%;
+    text-align: center;
+}
+.ver-ofertas-parent{
+    background: url("../img/img-registro.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 290px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ver-ofertas-parent a{
+    font-size: 1.3rem;
+    color: #fff;
+    background: rgb(56, 117, 215);
+    width:100%;
+    text-align: center;
+}
+/*
+LISTADO DE OFERTAS
+ */
+.titulo-contenido-parent{
+    display: flex;
+    align-items: center;
+}
+.btn-nueva-oferta{
+    margin: auto;
+    margin-top: 13px;
+}
+.card-ofertas{
+    min-height: 100px;
+}
+.card-no-ofertas{
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-no-ofertas h1{
+    margin: 0;
+}
+.card-no-acceso{
+    min-height: 400px;
+    margin-top:100px;
+    text-align: center;
+}
+/*
+OFERTAS
+ */
+.oferta-h6 h6{
+    font-weight: 700;
+}
+.separador-datos{
+    border-right: 2px solid #eeeeee;
+}
+.btn-listado-ofertas{
+    text-align: right;
+}
+/*
+CANDIDATO
+ */
+.candidato-h6{
+    padding-left: 40px!important;
+}
+.candidato-h6 h6{
+    font-weight: 700;
+}
+
+@media screen and (max-width:600px){
+    .img-perfil{
+        margin: auto;
+    }
+    .info-perfil{
+        text-align: center;
+    }
+    .btn-listado-ofertas{
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .titulo-contenido-parent{
+        flex-flow: column;
+    }
+    .titulo-contenido h4{
+        font-size: 1.7rem!important;
+    }
+    .titulo-contenido .material-icons{
+        font-size: 27px!important;
+    }
+    .card-ofertas{
+        text-align: center;
+    }
+    .candidato-h6{
+        padding-left: 10.500px!important;
+    }
+    .separador-datos{
+        border-right: none;
+        border-bottom: 2px solid #eeeeee;
+    }
+}

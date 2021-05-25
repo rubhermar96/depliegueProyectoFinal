@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Mis Candidaturas{% endblock %}
+{% block navlinks %}
+    {% if user.is_authenticated %}
+        <li><a href="{% url 'bienvenida' %}" class="">{{ user.username }}<i class="material-icons left">account_circle</i></a></li>
+        <li><a href="{% url 'sign_out' %}" class="waves-effect waves-light btn-small red accent-3">Cerrar Sesión</a></li>
+    {% else %}
+        <li><a href="{% url 'sign_up' %}" class="waves-effect waves-light btn-small green accent-4">Registro</a></li>
+        <li><a href="{% url 'sign_in' %}" class="waves-effect waves-light btn-small blue darken-2">Inicio Sesión</a></li>
+    {% endif %}
+{% endblock navlinks %}
+{% block navlinks_2 %}
+    {% if user.is_authenticated %}
+        <li><a href="{% url 'bienvenida' %}" class="">{{ user.username }}<i class="material-icons left">account_circle</i></a></li>
+        <li><a href="{% url 'sign_out' %}" class="waves-effect waves-light btn-small red accent-3">Cerrar Sesión</a></li>
+    {% else %}
+        <li><a href="{% url 'sign_up' %}" class="waves-effect waves-light btn-small green accent-4">Registro</a></li>
+        <li><a href="{% url 'sign_in' %}" class="waves-effect waves-light btn-small blue darken-2">Inicio Sesión</a> </li>
+    {% endif %}
+{% endblock navlinks_2 %}
+{% block content %}
+    <header class="container">
+        <div class="titulo-contenido-parent row">
+            <h4 class="titulo-contenido col s12"><i class="material-icons left">list_alt</i> Mis Candidaturas</h4>
+        </div>
+    </header>
+    <main class="container">
+    {% for candidatura in candidaturas %}
+        {% if candidatura.candidato.username == user.username %}
+            <div class="card row card-ofertas">
+                <div class="col s12">
+                    <h4>{{ candidatura.oferta.titulo }}</h4>
+                </div>
+                <div class="col m7 s12">
+                    <h6>{{ candidatura.nombre_candidatura }}</h6>
+                    <p>{{ candidatura.published_date }}</p>
+                </div>
+                <div class="col m5 s12">
+                    <p><a href="{% url 'detalle_candidatura' pk=candidatura.pk %}" class="btn btn-large blue darken-2">Ver Detalles</a></p>
+                </div>
+            </div>
+        {% endif %}
+    {% empty %}
+        <h1>Vacio</h1>
+    {% endfor %}
+    </main>
+{% endblock content %}

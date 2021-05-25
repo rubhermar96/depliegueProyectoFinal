@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Crear/Editar Ofertas{% endblock %}
+{% block navlinks %}
+    {% if user.is_authenticated %}
+        <li><a href="{% url 'bienvenida' %}" class="">{{ user.username }}<i class="material-icons left">account_circle</i></a></li>
+        <li><a href="{% url 'sign_out' %}" class="waves-effect waves-light btn-small red accent-3">Cerrar Sesión</a></li>
+    {% else %}
+        <li><a href="{% url 'sign_up' %}" class="waves-effect waves-light btn-small green accent-4">Registro</a></li>
+        <li><a href="{% url 'sign_in' %}" class="waves-effect waves-light btn-small blue darken-2">Inicio Sesión</a></li>
+    {% endif %}
+{% endblock navlinks %}
+{% block navlinks_2 %}
+    {% if user.is_authenticated %}
+        <li><a href="{% url 'bienvenida' %}" class="">{{ user.username }}<i class="material-icons left">account_circle</i></a></li>
+        <li><a href="{% url 'sign_out' %}" class="waves-effect waves-light btn-small red accent-3">Cerrar Sesión</a></li>
+    {% else %}
+        <li><a href="{% url 'sign_up' %}" class="waves-effect waves-light btn-small green accent-4">Registro</a></li>
+        <li><a href="{% url 'sign_in' %}" class="waves-effect waves-light btn-small blue darken-2">Inicio Sesión</a> </li>
+    {% endif %}
+{% endblock navlinks_2 %}
+{% block content %}
+    <header class="container">
+        <div class="titulo-contenido-parent row">
+            <h4 class="titulo-contenido col m8 s12"><i class="material-icons left">list_alt</i> Listado de Candidatos</h4>
+            <div class="col m4 s12 right-align">
+                <a href="{% url 'listado_ofertas' %}" class="waves-effect waves-light btn btn-modal btn-nueva-oferta grey ">Listado Ofertas</a>
+            </div>
+        </div>
+    </header>
+    <main class="container">
+    {% for candidatura in candidaturas %}
+        {% if candidatura.oferta.pk == oferta.pk %}
+             <div class="row card card-ofertas">
+                 <div class="row col s12">
+                     <div class="col m4 s12">
+                         <div class="img-perfil" style="background-image: url('{{ candidatura.candidato.foto.url }}');margin-top:10px;"></div>
+                     </div>
+                     <div class="col m8 s12">
+                         <h4>{{ candidatura.candidato.nombre }} {{ candidatura.candidato.apellidos }}</h4>
+                     </div>
+                 </div>
+                 <div class="col m6 s12 candidato-h6">
+                     <h6>Teléfono:</h6>
+                     <p>{{ candidatura.candidato.telf_usuario }}</p>
+                     <h6>Fecha de Nacimiento:</h6>
+                     <p>{{ candidatura.candidato.fecha_nacimiento }}</p>
+                 </div>
+                 <div class="col m6 s12">
+                     <p><a href="{{ candidatura.candidato.cvc.url }}" class="waves-effect waves-light btn-small blue darken-2">Currículum Vitae</a></p>
+                     <p><a href="mailto:{{ candidatura.candidato.email }}" class="waves-effect waves-light btn-small blue darken-2">Contacto Correo</a></p>
+                 </div>
+             </div>
+
+        {% endif %}
+    {% endfor %}
+    </main>
+{% endblock content %}

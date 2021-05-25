@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Crear/Editar Ofertas{% endblock %}
+{% block navlinks %}
+    {% if user.is_authenticated %}
+        <li><a href="{% url 'bienvenida' %}" class="">{{ user.username }}<i class="material-icons left">account_circle</i></a></li>
+        <li><a href="{% url 'sign_out' %}" class="waves-effect waves-light btn-small red accent-3">Cerrar Sesión</a></li>
+    {% else %}
+        <li><a href="{% url 'sign_up' %}" class="waves-effect waves-light btn-small green accent-4">Registro</a></li>
+        <li><a href="{% url 'sign_in' %}" class="waves-effect waves-light btn-small blue darken-2">Inicio Sesión</a></li>
+    {% endif %}
+{% endblock navlinks %}
+{% block navlinks_2 %}
+    {% if user.is_authenticated %}
+        <li><a href="{% url 'bienvenida' %}" class="">{{ user.username }}<i class="material-icons left">account_circle</i></a></li>
+        <li><a href="{% url 'sign_out' %}" class="waves-effect waves-light btn-small red accent-3">Cerrar Sesión</a></li>
+    {% else %}
+        <li><a href="{% url 'sign_up' %}" class="waves-effect waves-light btn-small green accent-4">Registro</a></li>
+        <li><a href="{% url 'sign_in' %}" class="waves-effect waves-light btn-small blue darken-2">Inicio Sesión</a> </li>
+    {% endif %}
+{% endblock navlinks_2 %}
+{% block content %}
+    {% if user.is_authenticated and user.usuario_administrador %}
+        <main class="container max-width-content">
+            <div class="card row">
+                <h4 class="center-align titulo-registro">Nueva/Editar Oferta</h4>
+                <form action="" method="POST" enctype="multipart/form-data" class="col s12 center-align">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{ form.titulo }}
+                            <label>Titulo</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            {{ form.tipo_contrato }}
+                            <label>Tipo de Contrato</label>
+                        </div>
+                        <div class="input-field col s6">
+                            {{ form.salario }}
+                            <label>Salario</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{ form.experiencia }}
+                            <label>Experiencia Previa</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{ form.descripcion }}
+                            <label>Descripción</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <input type="submit" name="submit" class="btn btn-success green accent-4" value="ENVIAR">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <p><a href="{% url 'listado_ofertas' %}" class="waves-effect waves-light btn-small red accent-3">CANCELAR</a></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+    {% else %}
+        <main class="container">
+            <div class="card row card-no-acceso">
+                <div class="col s12">
+                    <h2>No puedes acceder a este contenido!</h2>
+                </div>
+                <div class="col s12">
+                    <a href="{% url 'bienvenida' %}" class="waves-effect waves-light btn-large blue darken-2">Volver a Inicio</a>
+                </div>
+            </div>
+        </main>
+    {% endif %}
+{% endblock content %}

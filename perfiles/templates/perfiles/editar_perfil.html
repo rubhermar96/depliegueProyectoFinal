@@ -1,0 +1,14 @@
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+      <div class="modal-content">
+          <h4>Editar Perfil</h4>
+          <form id="form_edicion" action="{% url 'perfiles:actualizar_perfil' %}" method="POST">
+              {% csrf_token %}
+              {{ form.as_p }}
+          </form>
+      </div>
+      <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+          <button id = "boton_creacion" class="waves-effect waves-green btn-flat" type="button" onclick="editar_perfil()">Aceptar</button>
+      </div>
+  </div>

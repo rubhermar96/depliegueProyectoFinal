@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}Ofertas Disponibles{% endblock %}
+{% block navlinks %}
+    {% if user.is_authenticated %}
+        <li><a href="{% url 'bienvenida' %}" class="">{{ user.username }}<i class="material-icons left">account_circle</i></a></li>
+        <li><a href="{% url 'sign_out' %}" class="waves-effect waves-light btn-small red accent-3">Cerrar Sesión</a></li>
+    {% else %}
+        <li><a href="{% url 'sign_up' %}" class="waves-effect waves-light btn-small green accent-4">Registro</a></li>
+        <li><a href="{% url 'sign_in' %}" class="waves-effect waves-light btn-small blue darken-2">Inicio Sesión</a></li>
+    {% endif %}
+{% endblock navlinks %}
+{% block navlinks_2 %}
+    {% if user.is_authenticated %}
+        <li><a href="{% url 'bienvenida' %}" class="">{{ user.username }}<i class="material-icons left">account_circle</i></a></li>
+        <li><a href="{% url 'sign_out' %}" class="waves-effect waves-light btn-small red accent-3">Cerrar Sesión</a></li>
+    {% else %}
+        <li><a href="{% url 'sign_up' %}" class="waves-effect waves-light btn-small green accent-4">Registro</a></li>
+        <li><a href="{% url 'sign_in' %}" class="waves-effect waves-light btn-small blue darken-2">Inicio Sesión</a> </li>
+    {% endif %}
+{% endblock navlinks_2 %}
+{% block content %}
+    {% if user.is_authenticated and user.usuario_administrador %}
+        <header class="container">
+            <div class="titulo-contenido-parent row">
+                <h4 class="titulo-contenido col m8 s12"><i class="material-icons left">list_alt</i> Listado de Ofertas</h4>
+                <div class="col m4 s12 right-align">
+                    <a href="{% url 'crear_oferta' %}" class="btn btn-modal btn-nueva-oferta js-crear-oferta"><i class="left material-icons">add</i> Nueva Oferta</a>
+                </div>
+            </div>
+        </header>
+        <main class="container">
+            {% for oferta in ofertas %}
+                <div class="row card card-ofertas">
+                    <div class="row col s12">
+                        <h4>{{ oferta.titulo }}</h4>
+                    </div>
+                    <div class="row col s12">
+                        <div class="col m8 s12 oferta-h6">
+                            <h6>Fecha de publicación:</h6>
+                            <p>{{ oferta.published_date }}</p>
+                        </div>
+                        <div class="col m4 s12">
+                            <p><a href="{% url 'detalle_oferta' pk=oferta.pk %}" class="btn btn-large blue darken-2">Ver Oferta</i></a></p>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="row card card-no-ofertas center-align">
+                    <div class="col s12 center-align">
+                        <h1 class="center-align grey-text lighten-3">No hay Ofertas Disponibles</h1>
+                    </div>
+                </div>
+            {% endfor %}
+        </main>
+    {% elif user.is_authenticated %}
+        <header class="container">
+            <div class="titulo-contenido-parent row">
+                <h4 class="titulo-contenido col s12"><i class="material-icons left">list_alt</i> Listado de Ofertas</h4>
+            </div>
+        </header>
+        <main class="container">
+            {% for oferta in ofertas %}
+            <div class="row card card-ofertas">
+                <div class="row col s12">
+                    <h4>{{ oferta.titulo }}</h4>
+                </div>
+                <div class="row col s12">
+                    <div class="col m8 s12 oferta-h6">
+                        <h6>Fecha de publicación:</h6>
+                        <p>{{ oferta.published_date }}</p>
+                    </div>
+                    <div class="col m4 s12">
+                        <p><a href="{% url 'detalle_oferta' pk=oferta.pk %}" class="btn btn-large blue darken-2">Ver Oferta</i></a></p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+                <div class="row card card-no-ofertas center-align">
+                    <div class="col s12 center-align">
+                        <h1 class="center-align grey-text lighten-3">No hay Ofertas Disponibles</h1>
+                    </div>
+                </div>
+            {% endfor %}
+        </main>
+    {% endif %}
+{% endblock content %}
