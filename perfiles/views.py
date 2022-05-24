@@ -10,7 +10,7 @@ from .forms import SignUpForm, FormCandidatura
 from django.contrib.auth.views import LoginView, LogoutView
 from .forms import FormOferta
 # -*- coding: future_fstrings -*-
-
+class noseque(request):
 #REGISTRO USUARIO
 class SignUpView(CreateView):
     model = Perfil
